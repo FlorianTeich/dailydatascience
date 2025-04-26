@@ -1,0 +1,18 @@
+[project]
+name = "src"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[dependency-groups]
+create-data = [
+    "sdv>=1.18.0",
+]
+
+train = [
+    "pandas>=2.2.2",
+    "scikit-learn>=1.5.1",
+]

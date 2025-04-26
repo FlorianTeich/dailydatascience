@@ -17,3 +17,6 @@ dependencies = [
     "scipy>=1.14.1",
     "seaborn>=0.13.2",
 ]
+
+[tool.uv.workspace]
+members = ["src"]
