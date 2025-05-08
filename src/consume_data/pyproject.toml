@@ -1,0 +1,22 @@
+[project]
+name = "src"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[dependency-groups]
+consume-data = [
+    "confluent-kafka",
+    "psycopg2-binary>=2.9.10",
+    "pandas>=2.2.2",
+    "scikit-learn>=1.5.1",
+    "numpy",
+]
+
+train = [
+    "pandas>=2.2.2",
+    "scikit-learn>=1.5.1",
+]

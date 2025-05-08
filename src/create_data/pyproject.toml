@@ -10,6 +10,10 @@ dependencies = [
 [dependency-groups]
 create-data = [
     "sdv>=1.18.0",
+    "psycopg2-binary>=2.9.10",
+    "pandas>=2.2.2",
+    "scikit-learn>=1.5.1",
+    "numpy",
 ]
 
 train = [

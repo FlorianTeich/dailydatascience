@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir uv
 COPY pyproject.toml /app
 # Install the required Python packages
 
-RUN uv sync --group train
+RUN uv sync --group consume_data
 #RUN uv pip install --group train
 
 # Command to run the script using 'uv'
-CMD ["uv", "run", "train.py"]
+CMD ["uv", "run", "consume_data.py"]
