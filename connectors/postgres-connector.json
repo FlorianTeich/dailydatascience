@@ -6,7 +6,7 @@
       "database.port": "5432",
       "database.user": "postgres",
       "database.password": "postgres",
-      "database.dbname": "mydb",
+      "database.dbname": "postgres",
       "database.server.name": "postgres_server",
       "plugin.name": "pgoutput",
       "topic.prefix": "postgres"

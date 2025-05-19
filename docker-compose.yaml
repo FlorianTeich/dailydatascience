@@ -7,11 +7,25 @@ services:
     build:
       context: ./src/create_data
       dockerfile: ./Dockerfile
+    environment:
+      POSTGRES_HOST: ${DATA_ARRIVAL_POSTGRES_HOST}
+      POSTGRES_PORT: ${DATA_ARRIVAL_POSTGRES_PORT}
+      POSTGRES_USER: ${DATA_ARRIVAL_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DATA_ARRIVAL_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DATA_ARRIVAL_POSTGRES_DB}
+      DATA_TABLE: ${DATA_ARRIVAL_DATA_TABLE}
   
   consume_data:
     build:
       context: ./src/consume_data
       dockerfile: ./Dockerfile
+    environment:
+      POSTGRES_HOST: ${DWH_POSTGRES_HOST}
+      POSTGRES_PORT: ${DWH_POSTGRES_PORT}
+      POSTGRES_USER: ${DWH_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DWH_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DWH_POSTGRES_DB}
+      DATA_TABLE: ${DWH_DATA_TABLE}
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -35,11 +49,11 @@ services:
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydb
+      POSTGRES_USER: ${DATA_ARRIVAL_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DATA_ARRIVAL_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DATA_ARRIVAL_POSTGRES_DB}
     ports:
-      - "5433:5432"
+      - ${DATA_ARRIVAL_POSTGRES_EXTERNAL_PORT}:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
     command: >
@@ -50,11 +64,11 @@ services:
   dwh:
     image: postgres:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydb
+      POSTGRES_USER: ${DWH_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DWH_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DWH_POSTGRES_DB}
     ports:
-      - "5434:5432"
+      - ${DWH_POSTGRES_EXTERNAL_PORT}:5432
     volumes:
       - dwh_data:/var/lib/postgresql/data
 
